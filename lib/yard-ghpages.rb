@@ -1,4 +1,4 @@
-require 'yard-gh-pages/version'
+require 'yard-ghpages/version'
 
 require 'yard'
 require 'grancher'
@@ -32,7 +32,6 @@ module Yard
             YARD::CLI::Yardoc.run(*opts)
           end
 
-
           desc 'abc'
           task :publish do |t|
             grancher = Grancher.new do |g|
@@ -44,7 +43,7 @@ module Yard
               g.directory 'doc', '.'
             end
 
-            #grancher.commit
+            grancher.commit
             grancher.push
           end
         end

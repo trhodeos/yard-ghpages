@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'yard-gh-pages/version'
+require 'yard-ghpages/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = 'yard-gh-pages'
-  gem.version       = Yard::Gh::Pages::VERSION
+  gem.name          = 'yard-ghpages'
+  gem.version       = Yard::GHPages::VERSION
   gem.authors       = ['Tyler Rhodes']
   gem.email         = %w(tyler.s.rhodes@gmail.com)
   gem.description   = %q{TODO: Write a gem description}
