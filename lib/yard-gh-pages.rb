@@ -2,6 +2,8 @@ require 'yard-gh-pages/version'
 
 require 'yard'
 require 'grancher'
+#require 'grancher/task'
+
 
 
 module Yard
@@ -30,18 +32,20 @@ module Yard
             YARD::CLI::Yardoc.run(*opts)
           end
 
-          desc 'deploy yard documentation to gh-pages'
-          task :deploy do |t|
-            grancher = Grancher.new do |g|
-              g.branch = 'gh-pages'
-              g.push_to = 'origin'
-              g.message = 'Updated documentation'
 
+          desc 'abc'
+          task :publish do |t|
+            grancher = Grancher.new do |g|
+              g.branch = 'gh-pages'         # alternatively, g.refspec = 'ghpages:/refs/heads/ghpages'
+              g.push_to = 'origin'
+              g.message = 'Updated website' # defaults to 'Updated files.'
+
+              # doc -> doc
               g.directory 'doc', '.'
             end
 
-            grancher.commit
-      #      grancher.push
+            #grancher.commit
+            grancher.push
           end
         end
       end
