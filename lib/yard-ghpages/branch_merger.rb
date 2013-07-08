@@ -12,10 +12,10 @@ module Yard::GHPages
 
     def merge
       git.reset
-      source_tree = get_sha source
+      source_tree = get_sha source[:branch], source[:directory]
       raise Exception.new("Could not find source #{source}") unless source_tree
 
-      dest_tree = get_sha destination
+      dest_tree = get_sha destination[:branch], destination[:directory]
 
       commit = git.commit_tree(source_tree, message: message, parents: dest_tree || nil )
 
@@ -30,10 +30,10 @@ module Yard::GHPages
       end
     end
 
-    def get_sha opts
+    def get_sha *opts
       begin
-        git.revparse("#{opts[:branch]}:#{opts[:directory]}").tap do |t|
-          logger.warn("FOR #{opts}: #{t}")
+        git.revparse(":".join(opts)).tap do |t|
+          logger.debug("FOR #{opts}: #{t}")
         end
       rescue
         logger.warn("No sha for #{opts} found.")
@@ -46,7 +46,7 @@ module Yard::GHPages
     end
 
     def logger
-      @logger ||= Logger.new(STDOUT)
+      @logger ||= Logger.new(STDOUT).tap { |l| l.level = Logger::WARN }
     end
   end
 end
