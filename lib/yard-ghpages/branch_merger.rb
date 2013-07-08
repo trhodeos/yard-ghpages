@@ -17,16 +17,10 @@ module Yard::GHPages
 
       dest_tree = get_sha destination
 
-      git.with_temp_index do
-        git.read_tree(source_tree)
-        tree = git.write_tree
-        if dest_tree
-          commit = git.commit_tree(tree, message: message, parents: [dest_tree])
-        else
-          commit = git.commit_tree(tree, message: message)
-        end
-        git.branch("#{destination[:branch]}").update_ref(commit)
-      end
+      commit = git.commit_tree(source_tree, message: message, parents: dest_tree || nil )
+
+      git.branch("#{destination[:branch]}").update_ref(commit)
+
     end
 
     private
