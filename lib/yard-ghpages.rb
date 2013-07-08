@@ -1,8 +1,6 @@
 require 'yard-ghpages/version'
-
+require 'yard-ghpages/branch_merger'
 require 'yard'
-require 'grancher'
-#require 'grancher/task'
 
 
 
@@ -32,19 +30,13 @@ module Yard
             YARD::CLI::Yardoc.run(*opts)
           end
 
-          desc 'abc'
+          desc 'publish documentation to gh-pages'
           task :publish do |t|
-            grancher = Grancher.new do |g|
-              g.branch = 'gh-pages'         # alternatively, g.refspec = 'ghpages:/refs/heads/ghpages'
-              g.push_to = 'origin'
+            grancher = Yard::GHPages::BranchMerger.new do |g|
+              g.source = { branch: 'master', directory: 'doc' }
+              g.destination = { branch: 'gh-pages', directory: '.' }
               g.message = 'Updated website' # defaults to 'Updated files.'
-
-              # doc -> doc
-              g.directory 'doc', '.'
             end
-
-            grancher.commit
-            grancher.push
           end
         end
       end
