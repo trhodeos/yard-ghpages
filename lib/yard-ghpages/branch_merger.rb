@@ -12,12 +12,12 @@ module Yard::GHPages
 
     def merge
       git.reset
-      source_tree = get_sha source[:branch], source[:directory]
+      source_tree = sha source[:branch], source[:directory]
       raise Exception.new("Could not find source #{source}") unless source_tree
 
-      dest_tree = get_sha destination[:branch], destination[:directory]
+      dest_commit = head_commit(destination[:branch])
 
-      commit = git.commit_tree(source_tree, message: message, parents: dest_tree || nil )
+      commit = git.commit_tree(source_tree, message: message, parents: dest_commit || nil )
 
       git.update_ref("refs/heads/#{destination[:branch]}",commit)
 
@@ -30,9 +30,20 @@ module Yard::GHPages
       end
     end
 
-    def get_sha *opts
+    def head_commit branch
       begin
-        git.revparse(":".join(opts)).tap do |t|
+        git.branch(branch).gcommit.tap do |c|
+          logger.debug("FOR #{branch}: #{c}")
+        end
+      rescue
+        logger.warn("No commit for #{branch} found.")
+        nil
+      end
+    end
+
+    def sha *opts
+      begin
+        git.revparse(opts.join(":")).tap do |t|
           logger.debug("FOR #{opts}: #{t}")
         end
       rescue
