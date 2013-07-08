@@ -1,4 +1,4 @@
-# Yard::Gh::Pages
+# Yard::GHPages
 
 TODO: Write a gem description
 
@@ -6,7 +6,7 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
-    gem 'yard-gh-pages'
+    gem 'yard-ghpages'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install yard-gh-pages
+    $ gem install yard-ghpages
 
 ## Usage
 
