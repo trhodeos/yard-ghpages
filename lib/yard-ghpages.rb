@@ -36,7 +36,7 @@ module Yard
               g.source = { branch: 'master', directory: 'doc' }
               g.destination = { branch: 'gh-pages', directory: '.' }
               g.message = 'Updated website' # defaults to 'Updated files.'
-            end
+            end.merge
           end
         end
       end
