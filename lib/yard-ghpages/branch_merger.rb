@@ -19,7 +19,7 @@ module Yard::GHPages
 
       commit = git.commit_tree(source_tree, message: message, parents: dest_tree || nil )
 
-      git.branch("#{destination[:branch]}").update_ref(commit)
+      git.update_ref("refs/heads/#{destination[:branch]}",commit)
 
     end
 
