@@ -16,18 +16,18 @@ module Yard
 
       def install(opts)
         namespace :yard do
-          desc 'build yard documentation'
+          desc 'Build yard documentation'
           task :build do |t|
             YARD::CLI::Yardoc.run(*opts)
           end
 
-          desc 'publish documentation to gh-pages'
+          desc 'Publish documentation to gh-pages'
           task :publish do |t|
             Yard::GHPages::BranchMerger.new do |g|
               g.source = { branch: 'master', directory: 'doc' }
               g.destination = { branch: 'gh-pages'}
               g.message = 'Updated website' # defaults to 'Updated files.'
-            end.merge
+            end.merge.push
           end
         end
       end

@@ -18,9 +18,13 @@ module Yard::GHPages
       dest_commit = head_commit(destination[:branch])
 
       commit = git.commit_tree(source_tree, message: message, parents: dest_commit || nil )
+      git.update_ref(ref_head(destination[:branch]), commit)
+      self
+    end
 
-      git.update_ref("refs/heads/#{destination[:branch]}",commit)
-
+    def push
+      git.push('origin', destination[:branch])
+      self
     end
 
     private
@@ -30,11 +34,13 @@ module Yard::GHPages
       end
     end
 
+    def ref_head name
+      "refs/heads/#{name}"
+    end
+
     def head_commit branch
       begin
-        git.branch(branch).gcommit.tap do |c|
-          logger.debug("FOR #{branch}: #{c}")
-        end
+        git.branch(branch).gcommit.sha.tap { |c| logger.debug("FOR #{branch}: #{c}") }
       rescue
         logger.warn("No commit for #{branch} found.")
         nil
@@ -43,9 +49,7 @@ module Yard::GHPages
 
     def sha *opts
       begin
-        git.revparse(opts.join(":")).tap do |t|
-          logger.debug("FOR #{opts}: #{t}")
-        end
+        git.revparse(opts.join(":")).tap { |t| logger.debug("FOR #{opts}: #{t}") }
       rescue
         logger.warn("No sha for #{opts} found.")
         nil
