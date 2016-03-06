@@ -1,6 +1,7 @@
 # Yard::GHPages
 
-TODO: Write a gem description
+A simple set of Rake tasks that generate Yard docs and publishes them to github
+pages.
 
 ## Installation
 
@@ -18,7 +19,24 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+This gem exposes two new rake tasks: `yard:build` and `yard:publish`.
+
+To use this gem, simply build the yard docs first using
+```
+rake yard:build
+```
+
+Commit the changes.
+```
+git commit -am 'Update yard docs'
+```
+
+And publish the docs to github pages using
+```
+rake yard:publish
+```
+
+Easy as that!
 
 ## Contributing
 
