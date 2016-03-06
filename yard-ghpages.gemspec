@@ -17,10 +17,9 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = %w(lib)
 
-  gem.add_dependency('rake', '~> 10.1.0')
-  gem.add_dependency('yard', '~> 0.8.5')
-  gem.add_dependency('git', '~> 1.2.5')
+  gem.add_dependency('rake', '~> 10.5.0')
+  gem.add_dependency('yard', '~> 0.8.0')
+  gem.add_dependency('git', '~> 1.3.0')
 
-  gem.add_development_dependency('debugger')
   gem.add_development_dependency('redcarpet')
 end
