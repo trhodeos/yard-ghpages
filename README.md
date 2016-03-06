@@ -21,7 +21,13 @@ Or install it yourself as:
 
 This gem exposes two new rake tasks: `yard:build` and `yard:publish`.
 
-To use this gem, build the yard docs first.
+To use this gem, install in the `Rakefile`.
+```
+require 'yard-ghpages'
+Yard::GHPages::Tasks.install_tasks
+```
+
+Build the yard docs.
 ```
 rake yard:build
 ```
