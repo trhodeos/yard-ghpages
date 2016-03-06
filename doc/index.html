@@ -2,22 +2,22 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.8.5.2
+    &mdash; Documentation by YARD 0.8.7.6
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '';
-  framesUrl = "frames.html#!" + escape(window.location.href);
+  framesUrl = "frames.html#!file.README.html";
 </script>
 
 
@@ -61,15 +61,16 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><h1>Yard::Gh::Pages</h1>
+    <div id="content"><div id='filecontents'><h1>Yard::GHPages</h1>
 
-<p>TODO: Write a gem description</p>
+<p>A simple set of Rake tasks that generate Yard docs and publishes them to github
+pages.</p>
 
 <h2>Installation</h2>
 
 <p>Add this line to your application&#39;s Gemfile:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>yard-gh-pages</span><span class='tstring_end'>'</span></span>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>yard-ghpages</span><span class='tstring_end'>&#39;</span></span>
 </code></pre>
 
 <p>And then execute:</p>
@@ -79,12 +80,29 @@
 
 <p>Or install it yourself as:</p>
 
-<pre class="code ruby"><code class="ruby">$ gem install yard-gh-pages
+<pre class="code ruby"><code class="ruby">$ gem install yard-ghpages
 </code></pre>
 
 <h2>Usage</h2>
 
-<p>TODO: Write usage instructions here</p>
+<p>This gem exposes two new rake tasks: <code>yard:build</code> and <code>yard:publish</code>.</p>
+
+<p>To use this gem, simply build the yard docs first using</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_rake'>rake</span> <span class='label'>yard:</span><span class='id identifier rubyid_build'>build</span>
+</code></pre>
+
+<p>Commit the changes.</p>
+
+<pre class="code ruby"><code class="ruby">git commit -am &#39;Update yard docs&#39;
+</code></pre>
+
+<p>And publish the docs to github pages using</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_rake'>rake</span> <span class='label'>yard:</span><span class='id identifier rubyid_publish'>publish</span>
+</code></pre>
+
+<p>Easy as that!</p>
 
 <h2>Contributing</h2>
 
@@ -98,9 +116,9 @@
 </div></div>
 
     <div id="footer">
-  Generated on Mon Jul  8 13:41:15 2013 by
+  Generated on Sun Mar  6 08:48:14 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.5.2 (ruby-1.9.3).
+  0.8.7.6 (ruby-2.2.3).
 </div>
 
   </body>
