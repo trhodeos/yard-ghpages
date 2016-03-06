@@ -63,7 +63,7 @@
 
     <div id="content"><div id='filecontents'><h1>Yard::GHPages</h1>
 
-<p>A simple set of Rake tasks that generate Yard docs and publishes them to github
+<p>A simple set of Rake tasks that generates Yard docs and publishes them to github
 pages.</p>
 
 <h2>Installation</h2>
@@ -87,7 +87,13 @@ pages.</p>
 
 <p>This gem exposes two new rake tasks: <code>yard:build</code> and <code>yard:publish</code>.</p>
 
-<p>To use this gem, simply build the yard docs first using</p>
+<p>To use this gem, install in the <code>Rakefile</code>.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>yard-ghpages</span><span class='tstring_end'>&#39;</span></span>
+<span class='const'>Yard</span><span class='op'>::</span><span class='const'>GHPages</span><span class='op'>::</span><span class='const'>Tasks</span><span class='period'>.</span><span class='id identifier rubyid_install_tasks'>install_tasks</span>
+</code></pre>
+
+<p>Build the yard docs.</p>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_rake'>rake</span> <span class='label'>yard:</span><span class='id identifier rubyid_build'>build</span>
 </code></pre>
@@ -97,7 +103,7 @@ pages.</p>
 <pre class="code ruby"><code class="ruby">git commit -am &#39;Update yard docs&#39;
 </code></pre>
 
-<p>And publish the docs to github pages using</p>
+<p>Publish the docs to github pages.</p>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_rake'>rake</span> <span class='label'>yard:</span><span class='id identifier rubyid_publish'>publish</span>
 </code></pre>
@@ -116,7 +122,7 @@ pages.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Sun Mar  6 08:48:14 2016 by
+  Generated on Sun Mar  6 11:32:13 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.3).
 </div>
