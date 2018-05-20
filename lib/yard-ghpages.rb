@@ -1,6 +1,7 @@
 require 'yard-ghpages/version'
 require 'yard-ghpages/branch_merger'
 
+require 'yaml'
 require 'yard'
 
 module Yard
@@ -23,9 +24,20 @@ module Yard
 
           desc 'Publish documentation to gh-pages'
           task :publish do |t|
+            source_branch = 'master'
+            source_directory = 'docs'
+            destination_branch = 'gh-pages' 
+
+            config_filename = '.yard-gh-pages.yml'
+            if File.file?(config_filename)
+              config_file = YAML.load_file(config_filename)
+              source_branch = config_file.fetch('source_branch', source_branch)
+              source_directory = config_file.fetch('source_directory', source_directory)
+              destination_branch = config_file.fetch('destination_branch', destination_branch)
+            end
             Yard::GHPages::BranchMerger.new do |g|
-              g.source = { branch: 'master', directory: 'doc' }
-              g.destination = { branch: 'gh-pages'}
+              g.source = { branch: source_branch, directory: source_directory }
+              g.destination = { branch: destination_branch }
               g.message = 'Updated website' # defaults to 'Updated files.'
             end.merge.push
           end

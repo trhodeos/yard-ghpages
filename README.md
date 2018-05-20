@@ -44,6 +44,25 @@ rake yard:publish
 
 Easy as that!
 
+## Optional Configuration
+
+Include a file called .yard-gh-pages.yml in the root of your project.
+
+Options:
+- source_branch (default: 'master')
+  - Branch that should be used to pull the latest directory of generated YARD files
+- source_directory (default: 'docs')
+  - Directory within the source_branch that contains the generated YARD files
+- destination_branch (default: 'gh-pages')
+  - Branch within github where the YARD files should be pushed. 'gh-pages' is also the default branch used by Github.
+
+Example file:
+```yaml
+source_branch: 'master'
+source_directory: 'docs'
+destination_branch: 'gh-pages'
+```
+
 ## Contributing
 
 1. Fork it
